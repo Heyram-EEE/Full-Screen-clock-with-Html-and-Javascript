@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local CLock</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    <div>
+        <div id="element" style="background-color:black;display: flex;align-items: center;justify-content: center;" ondblclick = "var el = document.getElementById('element'); el.webkitRequestFullscreen();">    
+            <div>
+                <h2 class="fulltext" style="font-size: 180px;">
+                    <span id="hour">00</span> :
+                    <span id="minute">00</span> :
+                    <span id="second">00</span>
+                    <span id="ampm">AM</span>
+                </h2>
+                <h1 class="fulltext"   style="font-size: 60px;text-align: center;">Current Time!!</h1>
+            </div>
+        </div>
+    </div>
+       <br>
+    <div style="text-align: center;">
+        <button onclick="var el = document.getElementById('element'); el.webkitRequestFullscreen();" >Open in Full Screen!</button>
+    </div>
+       
+    <script>
+        function displaytime(){
+            let datetime = new Date()
+            document.querySelector('#hour').innerHTML=padzero(setampm(datetime.getHours()));
+            document.querySelector('#minute').innerHTML=padzero(datetime.getMinutes());
+            document.querySelector('#second').innerHTML=padzero(datetime.getSeconds());
+        }
+        setInterval(displaytime,1000);
+        function padzero(num){
+            return num<10 ? "0"+num : num
+        }
+        function setampm(hr){
+            if(hr>12){
+                document.querySelector('#ampm').innerHTML="PM";
+                return  hr-12;
+            }
+            return hr;
+        }
+    </script>
+    <style>
+        .fulltext{
+            font-family: 'Roboto';
+            color: aliceblue;
+        }
+    </style>
+</body>
+</html>
+
